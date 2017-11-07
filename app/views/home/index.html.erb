@@ -1,0 +1,81 @@
+<% provide(:title, 'Home') %>
+<div class="center jumbotron">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 cover-img" style="background-image:url('https://manablog.org/wp-content/uploads/2016/11/top-img.jpg');">
+        <div class="cover-text text-center">
+          <p style="color: #fff;">Oyster bar search site</p>
+          <p style="color: #fff;">牡蠣が食べたい人へ向けた、牡蠣が食べられるお店の検索サイトです</p>
+           <%= form_tag("/home/search", method: "get") do %>
+           <%= text_field_tag "q",params[:q] %>
+           <%= submit_tag "検索" , :onsubmit => "display()"%>
+          </p>
+         <% end %>
+       </div>
+		</div>
+	</div>
+</div>
+<div id="map" style="width:820px; height:500px"></div>
+  <%= page_entries_info @restaurants %>
+  <%= will_paginate @restaurants ,:class => 'pagination' %>
+  <table id=restaurant class="table table-list">
+    <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr class="each_info">
+        <td class="pull-left photo_area">
+          <%= link_to image_tag(restaurant.image_url), restaurant.url, class: "img-responsive" %>
+        </td>
+        <td class="center-block info_header_area">
+          <h4 class="center-block h4">
+          <%= restaurant.name %>
+          <%= restaurant.prefname %>
+          </h4>
+        </td>
+        <td class="hidden">
+          <%= restaurant.latitude %>
+        </td>  
+        <td class="hidden">
+          <%= restaurant.longitude %>
+        </td>
+        <td class="hidden">
+          <%= restaurant.name %>
+        </td>  
+        <td class="center-block info_area">
+          <%= restaurant.pr %>
+        </td>
+        <td class="center-block link_area">
+          <%= link_to image_tag("http://kirei.woman.excite.co.jp/gourmet/gnavi/img/gnavi_button.png"), restaurant.url, class: "img-responsive" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @restaurants %>
+<script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPU42eExZVUtSRGFMOSZzPWNvbnN1bWVyc2VjcmV0Jng9Mjk-"></script>
+<script type="text/javascript">
+
+window.onload = function(){
+  display();
+}
+
+function display() {
+  var ymap = new Y.Map("map");
+  var iconYellow = new Y.Icon('http://2.bp.blogspot.com/-iLvMf6s3b6M/V0QnoQqvVzI/AAAAAAAA69w/AdU5l6HIy3MX5CTXrfbMNNLbuksyyoC3QCLcB/s800/small_star7_yellow.png', {iconSize: new Y.Size(25,25)});
+  var tblTbody = document.getElementById('restaurant');
+  var lcells = tblTbody.rows[0].cells[2];
+  var rcells = tblTbody.rows[0].cells[3];
+  ymap.drawMap(new Y.LatLng(lcells.innerHTML, rcells.innerHTML), 13, Y.LayerSetId.NORMAL);
+  for (var i=0, rowLen=tblTbody.rows.length; i<rowLen; i++) {
+    var cells = tblTbody.rows[i].cells[4];
+    var lcells = tblTbody.rows[i].cells[2];
+    var rcells = tblTbody.rows[i].cells[3];
+    var markerYellow = new Y.Marker(new Y.LatLng(lcells.innerHTML, rcells.innerHTML), {icon: iconYellow});
+    var label = new Y.Label(new Y.LatLng(lcells.innerHTML,rcells.innerHTML), cells.innerHTML);
+    ymap.addFeature(markerYellow);
+    ymap.addFeature(label);
+
+  }
+}
+</script>

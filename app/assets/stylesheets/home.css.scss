@@ -1,0 +1,100 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cover-img {
+	height: 600px;
+	display: table;
+	width: 100%;
+	background-size: cover;
+}
+
+/* ワイドスクリーン用のCSS */
+@media only screen and (min-width: 1500px) {
+	.cover-img {
+		height: 800px;
+	}
+}
+
+/* タブレット用のCSS */
+@media only screen and (min-width : 768px) and (max-width : 1200px) {
+	.cover-img {
+		height: 500px;
+	}
+}
+
+/* スマホ用のCSS */
+@media only screen and (max-width: 479px) {
+	.cover-img {
+		height: 300px;
+	}
+}
+
+.cover-text {
+	display: table-cell;
+	vertical-align: middle;
+  text-align: center;
+}
+.each_info {
+    width: 640px;
+    height: 284px;
+    margin: 10px 0px;
+    text-align: left;
+    border-top: 2px #BDCBD2 dashed;
+}
+.photo_area {
+	display: table;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    float: left;
+    margin: 20px 0px;
+    padding: 5px;
+}
+.info_area {
+	width: 330px;
+    margin-left: 10px;
+    float: left;
+    margin: 20px 0px;
+    padding: 5px;
+}
+.info_header_area {
+    height: 20px;
+	width: 330px;
+    margin-left: 10px;
+    float: left;
+    margin: 20px 0px;
+    padding: 5px;
+}
+.link_area {
+	width: 170px;
+    margin-left: 0px;
+    float: left;
+    margin: 20px 0px;
+    padding: 5px;
+}
+.photo {
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.img {
+	margin: 0px;
+    border: 0px;
+    vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 240px;
+    height: 240px;
+    background-color: black;
+}
+.h4 {
+	font-weight: bold;
+	color: #ff0000;
+	float: left;
+}
+.hidden {
+	display: none;
+}
