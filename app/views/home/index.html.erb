@@ -15,7 +15,7 @@
 		</div>
 	</div>
 </div>
-<div id="map" style="width:820px; height:500px"></div>
+<div id="map" style="width:1020px; height:500px; margin:20px 0px;"></div>
   <%= page_entries_info @restaurants %>
   <%= will_paginate @restaurants ,:class => 'pagination' %>
   <table id=restaurant class="table table-list">
@@ -44,7 +44,7 @@
           <%= restaurant.pr %>
         </td>
         <td class="center-block link_area">
-          <%= link_to image_tag("http://kirei.woman.excite.co.jp/gourmet/gnavi/img/gnavi_button.png"), restaurant.url, class: "img-responsive" %>
+          <%= link_to image_tag("http://www.toriho-dai.com/img/details/details4_1.png"), restaurant.url, class: "img-responsive" %>
         </td>
       </tr>
     <% end %>
